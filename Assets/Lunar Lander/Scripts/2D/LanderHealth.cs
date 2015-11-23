@@ -15,13 +15,17 @@ public class LanderHealth : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
+    void Start()
+    {
+        LifeCounter.UpdateCounter(lives);
+    }
+
     public void Crash()
     {
         if(invincible) return;
-
-        print("crashed!");
-
+        
         lives--;
+        LifeCounter.UpdateCounter(lives);
         if(lives == 0)
         {
             Death();
@@ -54,6 +58,6 @@ public class LanderHealth : MonoBehaviour
 
     public void Death()
     {
-
+        ToggleIngameMenus.GameOver();
     }
 }

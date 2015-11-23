@@ -36,6 +36,7 @@ public class PlatformManager : MonoBehaviour
         if(instance.missingplatformCount == 0)
         {
             Debug.Log("Level Done!");
+            AlienBehaviour.AllAliensCheer();
         }
     }
 }
