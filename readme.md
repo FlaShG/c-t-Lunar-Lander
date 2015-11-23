@@ -13,3 +13,21 @@ http://www.heise.de/ct/ausgabe/2015-24-Einsteiger-Kurs-Spiele-Entwicklung-mit-Un
 
 Das Projekt runterladen und in Unity 5 mit "Open Other" öffnen.
 Die Spielszene "2D" befindet sich in den Assets im Ordner "Lunar Lander". Doppelklicken Sie in Unitys Project View darauf, um die Szene zu öffnen.
+
+##### Der Reihe nach:
+
+Um zu bestimmten Artikeln passende Versionen des Projekts zu verwenden, gibt es Tags.
+Ist das Repository bereits geklont, sind dafür diese Befehle nützlich:
+
+```
+git checkout Ausgabe1
+git checkout Ausgabe2
+usw.
+```
+
+Alternativ können Sie das Projekt auch direkt in einer passenden Version herunterladen.
+Dazu auf der Projektseite den richtigen Tag auswählen:
+
+<img src="http://www.bytezero.de/files/ct/Tags.jpg" />
+
+...und anschließend den <img src="http://www.bytezero.de/files/ct/DownloadZIP.jpg" /> -Button benutzen.
