@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class ToggleIngameMenus : MonoBehaviour
 {
@@ -8,6 +9,15 @@ public class ToggleIngameMenus : MonoBehaviour
     private GameObject pauseMenu;
     [SerializeField]
     private GameObject gameOverMenu;
+
+    //Liste von AudioSources, die auf "mute" gestellt werden sollen, wenn ein Menü aktiv ist
+    private static List<AudioSource> audioToDeactivateInMenus = new List<AudioSource>();
+
+    //wird noch früher als Awake aufgerufen, aber nur beim Levelwechsel
+    void OnLevelWasLoaded()
+    {
+        audioToDeactivateInMenus.Clear();
+    }
 
     void Awake()
     {
@@ -36,11 +46,27 @@ public class ToggleIngameMenus : MonoBehaviour
         pauseMenu.SetActive(!pauseMenu.activeSelf);
         //Pausiert die Welt wenn der Canvas aktiv wird
         Time.timeScale = pauseMenu.activeSelf ? 0 : 1;
+        //Ton bestimmer Soundquellen an oder aus schalten
+        SetAudioSourcesActive(!pauseMenu.activeSelf);
     }
 
     public static void GameOver()
     {
         Time.timeScale = 0;
         instance.gameOverMenu.SetActive(true);
+        SetAudioSourcesActive(false);
+    }
+
+    public static void AddAudioSourceForDeactivation(AudioSource audio)
+    {
+        audioToDeactivateInMenus.Add(audio);
+    }
+
+    private static void SetAudioSourcesActive(bool on)
+    {
+        foreach(var audio in audioToDeactivateInMenus)
+        {
+            audio.mute = !on;
+        }
     }
 }

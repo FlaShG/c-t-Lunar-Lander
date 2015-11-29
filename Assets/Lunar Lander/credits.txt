@@ -1,0 +1,24 @@
+
+
+Textures/desert.jpg
+    http://hhh316.deviantart.com/art/Seamless-desert-sand-texture-183159331
+
+Textures/rock.jpg
+    http://hhh316.deviantart.com/art/Seamless-Rock-Face-Texture-271675185
+
+Textures/lava.jpg
+    http://www.spiralgraphics.biz/packs/terrain_volcanic_gaseous/index.htm?8
+
+Sounds/wind.wav
+    http://soundbible.com/1810-Wind.html
+
+Sounds/fire.wav
+    http://www.freesoundeffects.com/mp3_89308.mp3
+
+Sounds/crash.wav
+    http://www.freesoundeffects.com/mp3_426954.mp3
+
+Sounds/Music/Chipper Doodle v2.mp3
+    Kevin MacLeod (incompetech.com)
+    Licensed under Creative Commons: By Attribution 3.0
+    http://creativecommons.org/licenses/by/3.0/

@@ -3,7 +3,7 @@
 public class LanderDamageablePart : MonoBehaviour
 {
     private LanderHealth landerHealth;
-
+    
 
     void Awake()
     {

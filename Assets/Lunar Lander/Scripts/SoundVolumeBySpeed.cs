@@ -25,6 +25,8 @@ public class SoundVolumeBySpeed : MonoBehaviour
         lastPosition = transform.position;
 
         audio.volume = 0;
+
+        ToggleIngameMenus.AddAudioSourceForDeactivation(audio);
     }
 
     void Update()

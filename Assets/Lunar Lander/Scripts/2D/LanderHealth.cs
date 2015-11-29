@@ -3,16 +3,21 @@ using System.Collections;
 
 public class LanderHealth : MonoBehaviour
 {
-    private SpriteRenderer sr;
+    private LanderInvincibility invincibility;
 
     public int lives = 3;
-    public float invincibleTimeAfterCrash = 2;
-    private bool invincible = false;
+    public bool isInvincible
+    {
+        get
+        {
+            return invincibility.invincible;
+        }
+    }
 
 
     void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        invincibility = GetComponent<LanderInvincibility>();
     }
 
     void Start()
@@ -22,7 +27,7 @@ public class LanderHealth : MonoBehaviour
 
     public void Crash()
     {
-        if(invincible) return;
+        if(invincibility.invincible || lives <= 0) return;
         
         lives--;
         LifeCounter.UpdateCounter(lives);
@@ -32,28 +37,8 @@ public class LanderHealth : MonoBehaviour
         }
         else
         {
-            StartCoroutine(Invincibility());
+            invincibility.Play();
         }
-    }
-
-    private IEnumerator Invincibility()
-    {
-        invincible = true;
-
-        float elapsedTime = 0;
-        var color = sr.color;
-        while(elapsedTime < invincibleTimeAfterCrash)
-        {
-            color.a = Mathf.Cos(elapsedTime * 80) + 1 * 0.5f;
-            sr.color = color;
-
-            yield return null;
-
-            elapsedTime += Time.deltaTime;
-        }
-
-        sr.color = Color.white;
-        invincible = false;
     }
 
     public void Death()
