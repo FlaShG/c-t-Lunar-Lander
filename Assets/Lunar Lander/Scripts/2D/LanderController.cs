@@ -31,9 +31,9 @@ public class LanderController : MonoBehaviour
     //Erste Logik des Spiels wird in Start implementiert.
     void Start()
     {
-        exhaustParticles.enableEmission = false;
-        turnClockwiseParticles.enableEmission = false;
-        turnCounterclockwiseParticles.enableEmission = false;
+        SetEmission(exhaustParticles, false);
+        SetEmission(turnClockwiseParticles, false);
+        SetEmission(turnCounterclockwiseParticles, false);
     }
 
     //FixedUpdate wird in jedem Fixed Update Step ausgeführt.
@@ -44,18 +44,28 @@ public class LanderController : MonoBehaviour
         if(Input.GetButton("Accelerate"))
         {
             rb.AddRelativeForce(Vector2.up * upwardsPower);
-            exhaustParticles.enableEmission = true;
+            SetEmission(exhaustParticles, true);
         }
         else
         {
-            exhaustParticles.enableEmission = false;
+            SetEmission(exhaustParticles, false);
         }
 
         var rotationInput = -Input.GetAxis("Horizontal");
         rb.AddTorque(rotationInput * rotatePower);
 
-        turnClockwiseParticles.enableEmission = rotationInput > 0.2f;
-        turnCounterclockwiseParticles.enableEmission = rotationInput < -0.2f;
+        SetEmission(turnClockwiseParticles, rotationInput > 0.2f);
+        SetEmission(turnCounterclockwiseParticles, rotationInput < -0.2f);
+    }
+
+    private static void SetEmission(ParticleSystem ps, bool enable)
+    {
+#if UNITY_5_3
+        var emission = ps.emission;
+        emission.enabled = enable;
+#else
+        ps.enableEmission = enable;
+#endif
     }
 }
 

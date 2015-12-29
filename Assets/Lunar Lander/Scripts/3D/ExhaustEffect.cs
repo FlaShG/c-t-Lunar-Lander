@@ -23,7 +23,11 @@ public class ExhaustEffect : MonoBehaviour
         audio = GetComponent<AudioSource>();
 
         fullLightIntensity = light.intensity;
+#if UNITY_5_3
+        fullParticleEmissionRate = ps.emission.rate.constantMax;
+#else
         fullParticleEmissionRate = ps.emissionRate;
+#endif
 
         if(audio)
         {
@@ -39,7 +43,7 @@ public class ExhaustEffect : MonoBehaviour
 
     public void SetActive(bool on)
     {
-        ps.enableEmission = on;
+        SetEmission(ps, on ? fullParticleEmissionRate : 0);
         targetLightIntensity = on ? fullLightIntensity : 0;
         if(audio)
         {
@@ -51,8 +55,7 @@ public class ExhaustEffect : MonoBehaviour
     {
         if(a > 0)
         {
-            ps.enableEmission = true;
-            ps.emissionRate = fullParticleEmissionRate * a;
+            SetEmission(ps, fullParticleEmissionRate * a);
 
             targetLightIntensity = fullLightIntensity * a;
             if(audio)
@@ -62,8 +65,7 @@ public class ExhaustEffect : MonoBehaviour
         }
         else
         {
-            ps.enableEmission = false;
-            ps.emissionRate = fullParticleEmissionRate;
+            SetEmission(ps, 0);
 
             targetLightIntensity = 0;
             if(audio)
@@ -76,5 +78,17 @@ public class ExhaustEffect : MonoBehaviour
     void Update()
     {
         light.intensity = Mathf.Lerp(light.intensity, targetLightIntensity, Time.deltaTime * 15);
+    }
+
+    private static void SetEmission(ParticleSystem ps, float amount)
+    {
+#if UNITY_5_3
+        var emission = ps.emission;
+        emission.enabled = amount > 0;
+        emission.rate = new ParticleSystem.MinMaxCurve(amount);
+#else
+        ps.enableEmission = amount > 0;
+        ps.emissionRate = amount;
+#endif
     }
 }
