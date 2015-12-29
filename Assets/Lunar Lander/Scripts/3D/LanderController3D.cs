@@ -55,6 +55,11 @@ public class LanderController3D : MonoBehaviour
                              + cameraPivot.forward * -input.x;
         rb.AddTorque(transformedInput * rotatePower);
 
+        //Ein anderer Vektor für die Partikelsysteme.
+        transformedInput = cameraPivot.right * input.x
+                         + cameraPivot.forward * input.y;
+        transformedInput = transform.InverseTransformDirection(transformedInput);
+
         exhaustParticlesFront.SetAmount(-transformedInput.z);
         exhaustParticlesBack.SetAmount(transformedInput.z);
         exhaustParticlesLeft.SetAmount(transformedInput.x);
