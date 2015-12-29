@@ -9,6 +9,8 @@ http://www.heise.de/ct/ausgabe/2015-22-Einsteiger-Kurs-Spiele-Entwicklung-mit-Un
 
 http://www.heise.de/ct/ausgabe/2015-24-Einsteiger-Kurs-Spiele-Entwicklung-mit-Unity-5-Teil-2-2852712.html
 
+http://www.heise.de/ct/ausgabe/2015-26-Einsteiger-Kurs-Spiele-Entwicklung-mit-Unity-5-Teil-3-3010660.html
+
 ##### Zum Öffnen:
 
 Das Projekt runterladen und in Unity 5 mit "Open Other" öffnen.
