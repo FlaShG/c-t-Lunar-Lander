@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
+[RequireComponent(typeof(AudioSource))]
 public class MusicPlayer : MonoBehaviour
 {
     private static MusicPlayer instance;
@@ -17,8 +19,7 @@ public class MusicPlayer : MonoBehaviour
         else
         {
             instance = this;
-            source = gameObject.AddComponent<AudioSource>();
-            source.playOnAwake = false;
+            source = GetComponent<AudioSource>();
             source.loop = true;
             source.spatialBlend = 0;
             DontDestroyOnLoad(gameObject);

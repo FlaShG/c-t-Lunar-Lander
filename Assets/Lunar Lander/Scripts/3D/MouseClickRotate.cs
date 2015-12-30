@@ -16,7 +16,7 @@ public class MouseClickRotate : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButton(0) && !ToggleIngameMenus.HasOpenMenus())
         {
             var rotation = new Vector3(0, Input.GetAxis("Mouse X") * speed, 0);
             if(!kgr)
