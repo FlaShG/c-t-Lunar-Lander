@@ -41,7 +41,7 @@ public class LanderController : MonoBehaviour
     //Nach Möglichkeit auch andere, für das Gameplay relevante Dinge.
     void FixedUpdate()
     {
-        if(Input.GetButton("Accelerate"))
+        if(LanderInput2D.acceleration)
         {
             rb.AddRelativeForce(Vector2.up * upwardsPower);
             SetEmission(exhaustParticles, true);
@@ -51,7 +51,7 @@ public class LanderController : MonoBehaviour
             SetEmission(exhaustParticles, false);
         }
 
-        var rotationInput = -Input.GetAxis("Horizontal");
+        var rotationInput = -LanderInput2D.horizontal;
         rb.AddTorque(rotationInput * rotatePower);
 
         SetEmission(turnClockwiseParticles, rotationInput > 0.2f);
