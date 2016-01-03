@@ -26,6 +26,11 @@ public class Platform : MonoBehaviour
         PlatformManager.AddPlatform(this);
     }
 
+    void OnDestroy()
+    {
+        PlatformManager.RemovePlatform(this);
+    }
+
     void OnLanderStand()
     {
         landerJustStoodOnMe = true;
