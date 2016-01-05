@@ -3,7 +3,7 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class MasterMixerVolumes : MonoBehaviour
+public class MixerVolumes : MonoBehaviour
 {
     public AudioMixer mixer;
     public string[] parameters;
