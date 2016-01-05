@@ -18,7 +18,14 @@ public class ToggleIngameMenus : MonoBehaviour
     //wird noch früher als Awake aufgerufen, aber nur beim Levelwechsel
     void OnLevelWasLoaded()
     {
-        audioToDeactivateInMenus.Clear();
+        for(var i = 0; i < audioToDeactivateInMenus.Count; ++i)
+        {
+            if(audioToDeactivateInMenus[i] == null)
+            {
+                audioToDeactivateInMenus.RemoveAt(i);
+                --i;
+            }
+        }
     }
 
     void Awake()

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MasterMixerVolumes : MonoBehaviour
 {
     public AudioMixer mixer;
-    public string parameter;
+    public string[] parameters;
     private Slider slider;
 
     void Awake()
@@ -16,26 +16,32 @@ public class MasterMixerVolumes : MonoBehaviour
 
     void Start()
     {
-        float volume;
-        if(mixer.GetFloat(parameter, out volume))
+        foreach(var parameter in parameters)
         {
-            slider.value = volume;
-        }
-        else
-        {
-            Debug.LogError("Mixer Parameter " + parameter + " not set up.");
+            float volume;
+            if(mixer.GetFloat(parameter, out volume))
+            {
+                slider.value = volume;
+            }
+            else
+            {
+                Debug.LogError("Mixer Parameter " + parameter + " not set up.");
+            }
         }
     }
 
     public void SetVolume(float volume)
     {
-        if(volume > slider.minValue)
+        foreach(var parameter in parameters)
         {
-            mixer.SetFloat(parameter, volume);
-        }
-        else
-        {
-            mixer.SetFloat(parameter, -80);
+            if(volume > slider.minValue)
+            {
+                mixer.SetFloat(parameter, volume);
+            }
+            else
+            {
+                mixer.SetFloat(parameter, -80);
+            }
         }
 	}
 }
