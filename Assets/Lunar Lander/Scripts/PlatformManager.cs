@@ -29,6 +29,11 @@ public class PlatformManager : MonoBehaviour
         ++instance.missingplatformCount;
     }
 
+    public static void RemovePlatform(Platform p)
+    {
+        --instance.missingplatformCount;
+    }
+
     public static void PlatformActivated(Platform p)
     {
         --instance.missingplatformCount;

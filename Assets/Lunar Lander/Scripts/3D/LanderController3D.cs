@@ -5,8 +5,7 @@ public class LanderController3D : MonoBehaviour
 {
     private Rigidbody rb;
 
-    [SerializeField]
-    private Transform cameraPivot;
+    public Transform cameraPivot;
 
     public float upwardsPower;
     public float rotatePower;

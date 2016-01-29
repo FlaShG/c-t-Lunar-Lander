@@ -14,7 +14,7 @@ public class MouseClickPitch : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButton(0) && !ToggleIngameMenus.HasOpenMenus())
         {
             var euler = transform.localEulerAngles;
             euler.x -= Input.GetAxis("Mouse Y") * speed;
